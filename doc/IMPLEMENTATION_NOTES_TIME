@@ -1,0 +1,261 @@
+
+In order to handle properly the different combinations of Downtimes that may
+trigger a change of status of a CE or a Queue, a rich set of classes to 
+manipulate them has been implemented. 
+It is important to understand the meaning of each one of them in case of 
+new features need to be implemented, or bugs need to be fixed. 
+
+===============================================================================
+
+    classes to handle time intervals:
+
+        TimeInterval 
+        ExtendedTimeInterval
+
+===============================================================================
+
+Basic classes to represent a time interval. 
+
+A time interval may be start and end time of an scheduled downtime, 
+or it could be the start and end time of an entity (CE, Queue, ...) 
+being disabled. 
+
+Those are not necessarily the same thing, as in most cases an entity will 
+be turned off before the actual scheduled downtime starts. 
+
+The time interval for the original scheduled downtime will be 
+represented by an instance of class TimeInterval.
+
+Meanwhile, the time interval when the entity is actually turned off
+will be represented by an instance of class ExtendedTimeInterval. 
+Instances of ExtendedTimeInterval include the original TimeInterval one,
+so that information is never lost.
+
+Other than that, both classes -TimeInterval and ExtendedTimeInterval- 
+share the same API.
+    
+
+
+
+
+===============================================================================
+
+    classes to handle downtime intervals:
+
+        Downtime
+        EndpointDowntimes
+        EndpointDowntimesSet
+        OverlapDowntimes 
+        OverlapDowntimesList
+
+===============================================================================
+    
+In order to decide when a given Queue needs to be set Brokeroff/Offline, 
+we need to pay attention to all scheduled downtimes for all its Endpoints 
+(both CEs and DDMs).
+
+However, not every downtime can trigger a change in the Queue status.
+If a Queue has more than one CE, and only one of them, for example, is
+to be disabled, the Queue can still function with the rest of CEs. 
+Only when all CEs are disabled at the same time, the Queue must be blacklisted
+aswell.
+Therefore, we need to find out when all Endpoints of the same type (CE, DDM)
+are disabled at the same time. 
+
+The another angle is that we cannot check the overlaps between the original
+scheduled downtimes of the endpoints. 
+A Queue is not functional when all its CEs, for example, are at the same time
+disabled. But a CE is not disabled only during its scheduled downtime. 
+Switcher set that CE to DISABLED status a few hours before. That is the 
+time interval for each CE we need to pay attention to, rather than its original
+downtime interval. 
+
+
+For example:
+
+  Original scheduled          CE 1 ----------[---]-------------------[----]------ 
+  downtimes for 2 CEs                                                          
+  that belongs                CE 2 --------[----]-------------[----]-------------
+  to a given Queue:
+  
+  
+  When those CEs are          CE 1 ------[---|---]---------------[---|----]------
+  actually DISABLED                                                            
+                              CE 2 ----[---|----]---------[---|----]-------------
+  
+  
+  When the CEs are            CE 1 ------[------]----------------[-]------------- 
+  disabled at the 
+  same time                   CE 2 ------[------]----------------[-]------------- 
+
+
+  When the Queue is                --[---|------]------------[---|-]-------------      
+  disabled
+                    
+
+In order to calculate all those overlapping periods between different 
+time intervals, for any arbitrary number of endpoints, 
+a set of classes have been created.
+Here is the description of these classes and their APIs.
+
+---------------------------------------------------------------------
+class Downtime
+---------------------------------------------------------------------
+
+A class representing an scheduled downtime event 
+It includes an object TimeInterval as an attribute
+
+API: 
+
+* getTimeInterval(self)
+        returns the time interval for this downtime 
+
+* __contains__(t_epoch)
+        checks if a given time falls in the time interval of this downtime.
+
+* expired(self)
+        tells if the time interval for this downtime is over.
+    
+* shorter_than(seconds)
+        checks if the timeinterval for this downtime is shorter
+        than a given amount of time
+
+* extend(extra)
+        returns a copy of this Downtime object
+        with an extended TimeInterval
+    
+* overlap(other)
+        checks if both Downtime objects have overlapping TimeIntervals
+        If yes, returns the overlapping TimeInterval
+
+
+---------------------------------------------------------------------
+class EndpointDowntimes
+---------------------------------------------------------------------
+
+A class for all downtimes belonging to a given Endpoint 
+(either a CE or a DDM)
+In other words, a container for a list of Downtime objects.
+
+API:
+
+* add(downtime)
+        adds a Downtime object to the list
+
+* getlist(self)
+        return the list of Downtime objects for this Endpoint
+
+* extend(extend_sec)
+        returns a new EndpointDowntimes, where all Downtimes
+        have an extended TimeInterval
+
+* overlap(other)
+        calculates the overlapping between two EndpointDowntimes objects, 
+        this and a new one.
+
+        For each pair of Downtime objects that overlap, 
+        creates a OverlapDowntimes object with them, 
+        and adds it to a OverlapDowntimesList object.
+
+
+---------------------------------------------------------------------
+class OverlapDowntimes
+---------------------------------------------------------------------
+
+A class containing a list of overlapping Downtime objects.
+For example, to handle together all Downtimes from different CE objects 
+with overlapping time intervals.
+
+Example: the first Downtime of each CE overlap 
+         belong to an OverlapDowntimes object
+
+   CE 1 ----------[---]-------------------[----]------ 
+                                                    
+   CE 2 --------[----]-------------[----]-------------
+
+
+
+API:
+
+
+* getlist(self)
+        return the list of Downtime objects for this 
+        collection of overlapping downtimes
+
+* add(downtime)
+        adds a new Downtime object, only if it overlaps 
+        with the existing list of Downtime objects in the list.
+        If it overlaps, the timeinterval is recalculated
+
+* overlap(downtime)
+        checks if a new Downtime object has a TimeInterval
+        overlapping with the TimeInterval object of this collection.
+
+* getTimeInterval(self)
+        return the overlapping time interval
+
+
+---------------------------------------------------------------------
+class OverlapDowntimesList
+---------------------------------------------------------------------
+
+A container to handle together a list of OverlapDowntimes objects.
+For example, all collections of overlapping Downtimes 
+for all CEs in a Queue.
+In the following example, d1 and d3 are Downtime objects that 
+would form an OverlapDowntimes (o1), and d2 plus d4 would form
+another OverlapDowntimes object (o2).
+In that case, o1 plus o2 form an OverlapDowntimesList object.
+
+                      d1                      d2
+          CE 1 ------[-------]---------------[--------]------
+                                                           
+                    d3                 d4
+          CE 2 ----[--------]---------[--------]-------------
+
+
+
+
+API:
+
+* add(collection)
+        adds a new OverlapDowntimes object to the list
+
+* getlist(self)
+        returns the list of collections of overlapping downtimes.
+
+* overlap(endpointdowntimes)
+        checks if the current list of OverlapDowntimes objects
+        and a EndpointDowntimes object contain TimeIntervals that overlap.
+
+* __add__(other)
+        combines 2 OverlapDowntimesList objects
+
+
+---------------------------------------------------------------------
+class EndpointDowntimesSet
+---------------------------------------------------------------------
+
+A container to handle together a list of EndpointDowntimes objects.
+In other words, a list of lists of Downtimes. 
+For example, the EndpointDowntimes objects for all CEs in a Queue.
+In the following example, d1 plus d2 form an EndpointDowntimes object (e1),
+and d3 plus d4 another one (e2).
+Then, e1 plus e2 form an EndpointDowntimesSet object.
+
+                      d1                      d2
+          CE 1 ------[-------]---------------[--------]------
+                                                           
+                    d3                 d4
+          CE 2 ----[--------]---------[--------]-------------
+
+
+API:
+
+* add(endpointdowntimes)
+        adds a new EndpointDowntimes object to the list
+
+
+* getOverlapDowntimesList(self)
+        calculates all overlappings between all EndpointDowntimes objects, 
+        and returns the list of OverlapDowntimes 

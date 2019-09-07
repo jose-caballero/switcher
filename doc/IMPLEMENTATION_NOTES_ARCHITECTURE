@@ -1,0 +1,98 @@
+Here are the rationale for some decisions in the new architecture
+
+================================================================================
+    Daemon vs cron
+================================================================================
+
+The version Switcher3 is written as a daemon instead of being executed 
+from a cron. 
+
+The main reason, but not the only one, is that this service interacts with 
+other ATLAS components, changing their status -and therefore their behavior-.
+For that reason, it is not desirable, if Switcher fails for any circumstances, 
+to allow it to keep running. Under those circumstances, it may inflict some 
+damage to the external services, over and over, on every cron cycle. 
+
+It is better, after some critical failure happens, to abort the service, 
+and only restart it once the sys admins and developers have had a look into it
+and fixed the problem.
+
+================================================================================
+    Object Oriented Architecture
+================================================================================
+
+The version Switcher3 has been re-written fully object oriented. 
+It was needed, since now it acts upon Entities of different types:
+Queues and CEs are treated separately. 
+And there are expectations that, in the future, other types of Entities like
+DDMs or Sites are also manipulated by this service. 
+
+It is not doable anymore to keep doing it, for a disparate set of Entities, 
+each one of them having its own set of policies, rules and statuses, 
+to implement this service without full Object Oriented approach. 
+Nested dictionaries are not a good solution anymore. 
+
+Also, time intervals manipulation have become quite more complex, which requires
+also its own set of classes (explained in a different doc).
+
+With a previous architecture, based on nested dictionaries, 
+each Step of the processing was done at once for all entities,
+like this:
+
+
+             Entity 1        Entity 2      ...      Entity N
+    
+    Step 1   ----------------------------------------------> 
+    
+    Step 2   ----------------------------------------------> 
+    
+     ...
+    
+    Step M   ----------------------------------------------> 
+
+
+This architecture may be OK when all Entities are equal, 
+and always all Steps are needed, with no exception.
+That is not true anymore. 
+Also, with that apprach it is very difficult  
+to stop the processing of a given Entity if one step fails.
+
+Therefore, a new architecture has been implemented, where
+each Entity runs its own steps, isolated from the others:
+
+
+          Entity 1          Entity 2  ...            Entity N
+
+    Step 1_1 |        Step 2_1 |             Step N_1   |
+             |                 |                        |
+    Step 1_2 |        Step 2_2 |             Step N_2   |
+             |                 |                        |
+     ...     |         ...     |              ...       |
+             |                 |                        |
+    Step 1_M V        Step 2_M V             Step N_M   V
+
+
+--------------------------------------------------------------------------------
+
+Also, to facility maintenance and adding new features, 
+the different steps have been split into separate modules 
+(or even separate directories).
+
+    * building the ATLAS topology is done in a different part of the 
+      code than the processing
+      Full explanation can be read in a different doc
+
+        * first an agnostic topology tree from AGIS is created
+
+        * then, a new tree is created, inherited from the previous one, 
+          customized for Switcher
+    
+    * policies implementation is done for each Entity in the corresponding
+      module, part of the second topology tree mentioned above
+
+    * interaction with AGIS to change Entities statuses and email notifications 
+      are done in a different directory
+
+
+
+

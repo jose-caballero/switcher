@@ -1,0 +1,610 @@
+{
+  "ANALY_IFIC": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-08-06T03:40:08.328044", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "ANALY_IFIC", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25805", 
+            "updated": "2018-08-06T03:40:08", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-08-06T03:40:08.328044", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "ANALY_IFIC", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25805", 
+        "updated": "2018-08-06T03:40:08", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "ANALY_INFN-BOLOGNA-T3": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-01-21T10:20:04.308297", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "ANALY_INFN-BOLOGNA-T3", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24761", 
+            "updated": "2018-01-21T10:20:04", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-01-21T10:20:04.308297", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "ANALY_INFN-BOLOGNA-T3", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24761", 
+        "updated": "2018-01-21T10:20:04", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "ANALY_NSC": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-07-12T03:40:05.733766", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "ANALY_NSC", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25612", 
+            "updated": "2018-07-12T03:40:05", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-07-12T03:40:05.733766", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "ANALY_NSC", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25612", 
+        "updated": "2018-07-12T03:40:05", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "ANALY_WATERLOO": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T03:20:12.545255", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "ANALY_WATERLOO", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25983", 
+            "updated": "2018-09-01T03:20:12", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T03:20:12.545255", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "ANALY_WATERLOO", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25983", 
+        "updated": "2018-09-01T03:20:12", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "Australia-ATLAS_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-04-23T14:40:10.628637", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "Australia-ATLAS_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25207", 
+            "updated": "2018-04-23T14:40:10", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-04-23T14:40:10.628637", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "Australia-ATLAS_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25207", 
+        "updated": "2018-04-23T14:40:10", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "CA-WATERLOO-T2_UCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T03:20:12.049154", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "CA-WATERLOO-T2_UCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25983", 
+            "updated": "2018-09-01T03:20:12", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T03:20:12.049154", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "CA-WATERLOO-T2_UCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25983", 
+        "updated": "2018-09-01T03:20:12", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "CONNECT_ES_ODYSSEY": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2017-08-16T10:35:05.864007", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=wguan/CN=667815/CN=Wen Guan/CN=proxy", 
+            "operationip": "188.184.93.168", 
+            "pandaqueue": "CONNECT_ES_ODYSSEY", 
+            "probe": "switcher", 
+            "reason": "Test API 2", 
+            "updated": "2017-05-16T02:40:25", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2017-08-16T10:35:05.864007", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=wguan/CN=667815/CN=Wen Guan/CN=proxy", 
+        "operationip": "188.184.93.168", 
+        "pandaqueue": "CONNECT_ES_ODYSSEY", 
+        "probe": "switcher", 
+        "reason": "Test API 2", 
+        "updated": "2017-05-16T02:40:25", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "CONNECT_ES_ODYSSEY_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2017-08-22T20:20:38.871275", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "CONNECT_ES_ODYSSEY_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher ", 
+            "updated": "2017-08-22T20:20:38", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2017-08-22T20:20:38.871275", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "CONNECT_ES_ODYSSEY_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher ", 
+        "updated": "2017-08-22T20:20:38", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "IFIC_ARC_TEST": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-07-18T20:40:05.325011", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "IFIC_ARC_TEST", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25642", 
+            "updated": "2018-07-18T20:40:05.323880", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-07-18T20:40:05.325011", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "IFIC_ARC_TEST", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25642", 
+        "updated": "2018-07-18T20:40:05.323880", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "INFN-BOLOGNA-T3-cebo-t3-01-cream-lsf": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-01-21T10:20:04.545756", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "INFN-BOLOGNA-T3-cebo-t3-01-cream-lsf", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24761", 
+            "updated": "2018-01-21T10:20:04", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-01-21T10:20:04.545756", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "INFN-BOLOGNA-T3-cebo-t3-01-cream-lsf", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24761", 
+        "updated": "2018-01-21T10:20:04", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "NSC_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-07-11T20:00:09.952109", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "NSC_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25612", 
+            "updated": "2018-07-11T20:00:09", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-07-11T20:00:09.952109", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "NSC_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25612", 
+        "updated": "2018-07-11T20:00:09", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "RO-02-NIPNE-tbat03-atlas-lcgpbs_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-08-04T08:20:11.642167", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "RO-02-NIPNE-tbat03-atlas-lcgpbs_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25818", 
+            "updated": "2018-08-04T08:20:11", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-08-04T08:20:11.642167", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "RO-02-NIPNE-tbat03-atlas-lcgpbs_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25818", 
+        "updated": "2018-08-04T08:20:11", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "RO-16-UAIC-cream-grid-atlas-lcgpbs": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T11:00:13.585564", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+            "updated": "2018-09-01T11:00:13", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T11:00:13.585564", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+        "updated": "2018-09-01T11:00:13", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T11:00:14.487729", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+            "updated": "2018-09-01T11:00:14", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T11:00:14.487729", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+        "updated": "2018-09-01T11:00:14", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T11:00:10.731892", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+            "updated": "2018-09-01T11:00:10", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T11:00:10.731892", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_ARC_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+        "updated": "2018-09-01T11:00:10", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "RO-16-UAIC-cream-grid-atlas-lcgpbs_MCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-09-01T11:00:12.865795", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_MCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+            "updated": "2018-09-01T11:00:12", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-09-01T11:00:12.865795", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "RO-16-UAIC-cream-grid-atlas-lcgpbs_MCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25982", 
+        "updated": "2018-09-01T11:00:12", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "TRIUMF_DOCKER_UCORE": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2017-12-02T20:40:07.168321", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "TRIUMF_DOCKER_UCORE", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24438", 
+            "updated": "2017-12-02T20:40:07.167460", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2017-12-02T20:40:07.168321", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "TRIUMF_DOCKER_UCORE", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=24438", 
+        "updated": "2017-12-02T20:40:07.167460", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "UAM-LCG2_CREAM_HTCONDOR": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-06-17T21:40:06.126609", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "UAM-LCG2_CREAM_HTCONDOR", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25457", 
+            "updated": "2018-06-17T21:40:06", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-06-17T21:40:06.126609", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "UAM-LCG2_CREAM_HTCONDOR", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25457", 
+        "updated": "2018-06-17T21:40:06", 
+        "value": "OFFLINE"
+      }
+    }
+  }, 
+  "UKI-NORTHGRID-MAN-HEP_SL6": {
+    "a": {
+      "mode": {
+        "AUTO": {
+          "switcher": {
+            "activity": "a", 
+            "expiration": null, 
+            "last_modified": "2018-03-15T09:00:07.455096", 
+            "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+            "operationip": "128.142.142.150", 
+            "pandaqueue": "UKI-NORTHGRID-MAN-HEP_SL6", 
+            "probe": "switcher", 
+            "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25033", 
+            "updated": "2018-03-15T09:00:07", 
+            "value": "OFFLINE"
+          }
+        }
+      }, 
+      "status": {
+        "activity": "a", 
+        "expiration": null, 
+        "last_modified": "2018-03-15T09:00:07.455096", 
+        "operationdn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=adcssb02/CN=660595/CN=Robot: ATLAS Distributed Computing Site Status Board 2/CN=proxy/CN=proxy", 
+        "operationip": "128.142.142.150", 
+        "pandaqueue": "UKI-NORTHGRID-MAN-HEP_SL6", 
+        "probe": "switcher", 
+        "reason": "set.offline.by.Switcher https://goc.egi.eu/portal/index.php?Page_Type=Downtime&id=25033", 
+        "updated": "2018-03-15T09:00:07", 
+        "value": "OFFLINE"
+      }
+    }
+  }
+}

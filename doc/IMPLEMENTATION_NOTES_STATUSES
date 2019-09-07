@@ -1,0 +1,104 @@
+===============================================================================
+                Enabling/Disabling an individual CE
+===============================================================================
+
+* only two possible values: ACTIVE | DISABLED
+
+* We disable the CE a given number of hours before its actual Downtime starts
+
+* Possible scenarios (from current status to new status):
+
+                 +--------------------------+------------------------------+----------------------------+
+                 |                          |                              |                            |
+                 |  In a Downtime interval  |  Not in a Downtime interval  |  Not in Downtime interval  |
+                 |                          |  but one is coming soon      |  and no one is coming soon |
+                 |                          |                              |                            |
+     +-----------+--------------------------+------------------------------+----------------------------+
+     |           |                          |                              |                            |
+     |  ACTIVE   |   change to DISABLED     |     change to DISABLED       |      remain ACTIVE         |
+     |           |                          |                              |                            |
+     +-----------+--------------------------+------------------------------+----------------------------+
+     |           |                          |                              |                            |
+     |  DISBLED  |   remain DISABLED        |     remain DISABLED          |      change to ACTIVE      |
+     |           |                          |                              |                            |
+     +-----------+--------------------------+------------------------------+----------------------------+
+
+* We cannot only check if there is a Downtime coming or not. 
+  Also if we are already in one, to avoid re-activating the CE too soon.
+
+* Only the first Downtime is relevant in order to decide the next CE status:                     \ 
+    - the current one                                                                            |  these points only  
+    - the next one coming                                                                        |  apply to CEs.
+  because either case the CE has to be set DISABLED, regardless any other future Downtimes.      |  To decide if the Queue
+                                                                                                 |  they belong to needs to 
+* If 2 Downtimes start at the same time, the one that finishes later is the most important one.  |  change status,
+                                                                                                 |  all Downtimes from all CEs
+* If 2 Downtimes already started, regardless when each one started,                              |  may be relevant
+  the one that finishes later is the most relevant one                                           /        
+
+* If the Downtime interval is too short, we may decide not to set the CE DISABLED.
+
+
+
+===============================================================================
+                Enabling/Disabling a Queue
+===============================================================================
+
+* Three possible values: ONLINE | BROKEROFF | OFFLINE
+                                                                                         \ 
+* We set Queue in status BROKEROFF a given number of hours before actual Downtime starts |   potentially, different
+                                                                                         |   number of hours depending
+* We set Queue in status OFFLINE a given number of hours before actual Downtime starts   |   of the type of Queue:
+                                                                                         /        - analysis
+                                                                                                  - production
+                                                                                                  - special 
+* For the Queue to make a decision, 
+  all Downtimes intervals for all CEs in the Queue may be important.
+  Example:
+        in this scenario, the first Downtime for CE 1 is not relevant
+        to decide if changing status of the Queue.
+        However, second Downtime for CE 1 and first Downtime for CE 2 
+        overlap, so the queue must be disabled
+
+        CE 1 ..........[---].....[---------]......
+
+        CE 2 ....................[------].........
+
+                                 |<---->|
+
+
+* Reasons to set "BROKEROFF" or "OFFLINE":
+
+    * a DDM Downtime
+
+    * all CEs for that Queue are DISABLED, or will, at the same time.
+      NOTE: this does not mean that the Downtime intervals for all CEs overlap.
+      It means that the CEs are all of them DISABLED at the same time,
+      and a CE gets disabled before its Downtime starts.
+      Example
+
+      When are the Downtimes?         CE 1 ...............[------]...............
+                                      CE 2 ...........................[------]...
+
+      When are the CEs DISABLED?      CE 1 .......[-------I------]...............
+                                      CE 2 ...................[-------I------]...
+
+      Interval affecting the Queue?        ...................[--]...............
+
+      When to disable the Queue?           ...........[-------I--]...............
+
+
+    * However, we need to know the duration of the final overlapping interval (from all CEs),
+      and not only if they are all DISABLED,
+      because we do not want to disable the Queue if that overlapping interval is too short.
+      For example, we do not want to set a Queue in BROKEROFF or OFFLINE status just because
+      all CEs happen to be DISABLED at the same time for 15 minutes.
+
+    * We must take into account only when the CE is going to be DISABLED for real.
+      If a CE had a very short Downtime interval, it may not get DISABLED at all, 
+      so that Downtime cannot be taken into account.
+
+
+===============================================================================
+                Allowed/forbidden Transitions
+===============================================================================

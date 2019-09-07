@@ -1,0 +1,9 @@
+#
+# Sysconfig file for switcher
+#
+# place this file under /etc/sysconfig/switcher
+#
+
+CONFFILE=/etc/switcher/switcher.conf
+CONSOLE_LOG=/var/log/switcher/console.log
+

@@ -1,0 +1,215 @@
+
+===============================================================================
+                Topology classes
+===============================================================================
+
+* in directory agistopology/ there is a set of classes to 
+  build the ATLAS topology from AGIS configuration. 
+  The entry point class is Topology(), in module agistopology/topology.py
+  This class does not perform any action after topology is built.
+  In order to add functionalities to the topology, 
+  a new child class needs to be used that inherits from this one:
+  
+          class UsefulTopology(Topology)
+  
+  The ATLAS topology being built by this class looks like this:
+
+                                                +--------+    
+                                                |Topology|
+                                                +--------+
+                                                  |  | |
+                                                  |  | |
+                                    +-------------+  | |
+                                    |          +-----+ +---------+
+                                    |          |                 |
+                                    |          |                 |
+                                 +-----+   +-----+            +-----+
+                                 |Cloud|   |Cloud|    ...     |Cloud|
+                                 +-----+   +-----+            +-----+
+                                  | | |
+                                  | | |
+                         +--------+ | +----------+
+                         |          |            |
+                         |          |            |
+                      +----+     +----+        +----+
+                      |Site|     |Site|  ...   |Site|
+                      +----+     +----+        +----+
+                       | |         |              |
+                       | |         |              |
+              +--------+ |         +------+       +---------+
+              |          |                |                 |
+              |          |                |                 |
+           +-----+     +-----+         +-----+           +-----+
+           |Queue|     |Queue|         |Queue|           |Queue|
+           +-----+     +-----+         +-----+           +-----+
+              |           |               |                 |
+              |           |               |                 |
+         +---------+  +---------+     +----------+     +----------+
+         |CEHandler|  |CEHandler|     |DDMHandler|     |DDMHandler|
+         +---------+  +---------+     +----------+     +----------+    
+            |  |         |  |             |                 |
+            |  |         |  |             |                 |
+     +------+  +-+ +-----+  |             +------+ +--------+
+     |           | |        |                    | | 
+     |           | |        |                    | |
+    +--+        +--+      +--+                  +---+
+    |CE|  ...   |CE|      |CE|                  |DDM|
+    +--+        +--+      +--+                  +---+
+
+
+sequence diagram (plantUML source):
+
+        @startuml
+        
+        hide footbox
+        skinparam shadowing false
+        
+        participant Topology
+        participant Cloud
+        participant Site
+        participant Queue
+        participant CE
+        participant DDM
+        
+        Topology -> Cloud: handle()
+        activate Cloud
+        
+        Cloud -> Site: handle()
+        activate Site
+        
+        Site -> Queue: handle()
+        activate Queue
+        
+        Queue -> CE: handle()
+        activate CE
+        CE -> CE: change()
+        destroy CE
+        CE --> Queue: Event
+        Queue -> DDM: handle()
+        
+        Queue -> Queue: change()
+        destroy Queue
+        
+        Queue --> Site: [ list of Event ]
+        destroy Site
+        
+        Site --> Cloud: [ list of Event ]
+        Cloud -> Cloud: notify()
+        destroy Cloud
+        
+        @enduml
+
+
+
+
+
+* This class Topology() holds the following dictionaries 
+  
+          self.cloud_d = {}
+          self.site_d = {}
+          self.queue_d = {}
+          self.ce_d = {}
+          self.ddm_d = {}
+  
+  The dictionary index is the Unique ID that indetifies each 
+  entity. For example, the Cloud name, or the CE endpoint.
+  
+* These dictionaries have two purposes:
+  
+      -- it makes easier to find a given entity by its unique ID
+         This way, to find a given entity, there is no need to 
+         search the entire tree to find it
+  
+         The architecture, this way, looks like this:
+
+
+ +--------------+          
+ | AGISTopology |<*>------+----------------+-----------------+--------------------------------------+-------------------------------------+
+ +--------------+         |                |                 |                                      |                                     | 
+                          |                |                 |                                      |                                     | 
+                          |                |                 |                                      V                                     | 
+                          V                V                 V            +---------------+     +--------+                                | 
+                    +-----------+     +----------+     +-----------+<*>-->| AGISCEHandler |<>-->| AGISCE |                                V   
+                    | AGISCloud |<>-->| AGISSite |<>-->| AGISQueue |      +---------------+     +--------+     +----------------+     +---------+
+                    +-----------+     +----------+     +-----------+<*>--------------------------------------->| AGISDDMHandler |<>-->| AGISDDM |  
+                                                                                                               +----------------+     +---------+
+
+
+    -- second reason is to make sure there is only one instance
+       of each entity with the same ID. 
+       When a new entity is requested, if its ID is already a key
+       in the corresponding dictionary, 
+       the existing object is returned.
+       Otherwise, a new object is created, and added to the 
+       dictionary.
+       In other words, the dictionaries are used to ensure all
+       entities are Singletons. 
+       One example is a CE object that serves multiple Queues. 
+       We only want one instance of that CE, not many.
+
+       NOTE: it could have been implemented making the entity classes Singletons
+       (there are several techniques to achieve that),
+       however, the implemented solution seems to make code 
+       a little bit more clear.
+
+
+* For the second purpose explained above, when a new instance of an 
+  entity is requested, a method _get_XYZ() is called:
+
+        self._get_cloud()
+        self._get_site()
+        self._get_queue()
+        self._get_ce()
+        self._get_ddm()
+
+  Those methods, if a truly new instance is needed, 
+  will issue a new call:
+
+        self._getNextCloud()
+        self._getNextSite()
+        self._getNextQueue()
+        self._getNextCE()
+        self._getNextDDM()
+
+  These _getNextXYZ() need to be overriden by classes that inherit
+  from this one, in order to make sure they use the right code for 
+  clouds, sites, queues, etc.
+
+* When all classes from the topology are inherited to add real
+  functionalies, the architecture looks like this:
+
+
+ +--------------+          
+ | AGISTopology |
+ +--------------+ 
+        ^        
+        |        
+        |                                                                 +---------------+     +--------+                               
+        |           +-----------+     +----------+     +-----------+      | AGISCEHandler |     | AGISCE |                                
+        |           | AGISCloud |     | AGISSite |     | AGISQueue |      +---------------+     +--------+     +----------------+     +---------+
+        |           +-----------+     +----------+     +-----------+              ^                 ^          | AGISDDMHandler |     | AGISDDM |  
+        |                 ^                 ^                ^                    |                 |          +----------------+     +---------+
+        |                 |                 |                |                    |                 |                  ^                  ^ 
+        |                 |                 |                |                    |                 |                  |                  |
+        |                 |                 |                |                    |                 |                  |                  |
+        |                 |                 |                |                    |                 |          +----------------+     +---------+
+        |           +-----------+     +----------+     +-----------+<*>-----------|-----------------|--------->|   DDMHandler   |<>-->|   DDM   |  
+        |           |   Cloud   |<>-->|   Site   |<>-->|   Queue   |      +---------------+     +--------+     +----------------+     +---------+
+        |           +-----------+     +----------+     +-----------+<*>-->|   CEHandler   |<>-->|   CE   |                                ^   
+        |                 ^                ^                 ^            +---------------+     +--------+                                | 
+        |                 |                |                 |                                      ^                                     | 
+        |                 |                |                 |                                      |                                     | 
+ +--------------+         |                |                 |                                      |                                     | 
+ | AGISTopology |<*>------+----------------+-----------------+--------------------------------------+-------------------------------------+
+ +--------------+          
+
+
+
+* After all entities (Topology, Cloud, Site, Queue, ...) have been 
+  inherited and a new topology have been built, replicating the AGIS topology,
+  then new code that deal with Switcher-specific issues is added to the
+  second set of classes. The original set of classes under agistopology/ 
+  are not touched.
+  In current implementation, the second set of classes is implemented
+  under directory topology/
+

@@ -1,0 +1,36 @@
+To facilitate communication between different parts of Switcher, 
+in particular to pass multiple pieces of information from one module to others, 
+a set of classes to handle "Events" have been created.
+
+An Event object represent a change of status on any Entity: a Queue, a CE, ...
+The Event contains information about which Entity changed, original and new statuses, 
+all the information about the scheduled downtime, etc. 
+
+That facilitates a lot, for example,  
+the process of building the email notifications for the Clouds, 
+when multiple pieces of information have the be reported at once.
+
+The list of attributes in the Event class are:
+
+        entitytype           type of entity (CE, Queue)
+        uid                  uniq id for the entity
+        old_status           previous status
+        new_status           new status
+        start                seconds since epoch for Downtime start
+        end                  seconds since epoch for Downtime end
+        timeinterval         timeinterval of the scheduled Downtime that triggers an event
+        downtime             scheduled Downtime that triggers an event
+        overlap_downtimes    collection of Downtimes that triggers an event
+        message              explanatory message
+        status_changed       tells if status changed
+
+
+To handle all Events items for a high level Entity 
+(like a Cloud, a Queue with muiltiple CEs, etc.) altogehter,
+there are also classes for that purpose:
+
+        - class Event: for a single Entity (CE, DDM)
+        - class QueueEventList: for all Events in a single Queue
+        - class SiteEventList: for all Events in a single Site
+        - class CloudEventList: for all Events in a single Cloud
+

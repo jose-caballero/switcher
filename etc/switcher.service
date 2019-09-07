@@ -1,0 +1,11 @@
+[Unit]
+Description=Switcher
+
+[Service]
+RemainAfterExit=true
+ExecStart=/etc/systemd/system/switcher start
+ExecStop=/etc/systemd/system/switcher stop
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,36 @@
+* get the X509 proxy @ switcher.cern.ch, to be able to talk to AGIS
+
+* Fix the messages to AGIS. 
+Put them back to config file
+
+
+* add a check for too short time intervals. 
+  We may not want to set a Queue brokeroff/offline when 
+  the CEs are all disabled for 10 minutes, for example.
+  
+  The same minimum time when DDM is down than if CEs are down?
+
+
+* Fix some Queue transitions:
+
+    - special values MUST not be changed to online:
+    
+        test -> online
+        paused -> online
+    
+    - decide what to do for the restrictive statuses:
+    
+        test -> brokeroff / offline
+        paused -> brokeroff / offline
+
+
+    - take into account the AGIS "comment" to decide if act on a Queue or not:
+
+        online + any kind of comment
+        offline + set.offline.by.Switcher
+        brokeroff + set.brokeroff.by.Switcher
+        test + HC.Test.Me
+
+            
+
+

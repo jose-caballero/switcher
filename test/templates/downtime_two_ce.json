@@ -1,0 +1,38 @@
+{{
+  "BNL-ATLAS": [
+  {{
+      "end_time": "{ENDTIME1}", 
+      "services": [
+      {{
+          "endpoint": "gridgk03.racf.bnl.gov:9619", 
+          "name": "BNL-ATLAS-CE-HTCONDOR-CE-gridgk03.racf.bnl.gov", 
+          "state": "ACTIVE", 
+          "status": "production", 
+          "type": "CE"
+        }}
+      ], 
+      "description": "scheduled downtime",
+      "info_url": "https://...",
+      "severity": "WARNING", 
+      "start_time": "{STARTTIME1}", 
+      "state": "ACTIVE"
+    }},
+  {{
+      "end_time": "{ENDTIME2}", 
+      "services": [
+      {{
+          "endpoint": "gridgk04.racf.bnl.gov:9619", 
+          "name": "BNL-ATLAS-CE-HTCONDOR-CE-gridgk04.racf.bnl.gov", 
+          "state": "ACTIVE", 
+          "status": "production", 
+          "type": "CE"
+        }}
+      ], 
+      "description": "scheduled downtime",
+      "info_url": "https://...",
+      "severity": "WARNING", 
+      "start_time": "{STARTTIME2}", 
+      "state": "ACTIVE"
+    }}
+  ] 
+}}

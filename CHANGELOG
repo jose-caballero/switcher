@@ -1,0 +1,10 @@
+3.1.1
+    * check if queue changed status following Switcher decision, with WARNING message in the email in case it did not
+3.1.0
+    * email notifications to the clouds with content for a single Site per message
+    * checking explicitly that SRM or SRMv2 are in the "affected_serviced" field in downtimes data, to prevent blacklisting tape-only queues
+    * trying 3 attempts reading input data before giving up
+    * new class SwitcherLoop where the main loop is coded, instead of Switcher.run()
+    * new Exceptions to be raised when data can not be read
+    * not shuttingdown the service if input data can not be read, just wait to next cycle
+3.0.0

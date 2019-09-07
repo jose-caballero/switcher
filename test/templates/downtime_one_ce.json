@@ -1,0 +1,22 @@
+{{
+  "DESY-HH": [
+  {{
+      "end_time": "{ENDTIME}", 
+      "services": [
+      {{
+          "endpoint": "grid-arcce0.desy.de:2811", 
+          "name": "DESY-HH-CE-grid-arcce0.desy.de", 
+          "state": "ACTIVE", 
+          "status": "production", 
+          "type": "CE"
+        }}
+      ], 
+      "description": "scheduled downtime",
+      "info_url": "https://...",
+      "severity": "WARNING", 
+      "start_time": "{STARTTIME}", 
+      "state": "ACTIVE"
+
+    }}
+  ] 
+}}

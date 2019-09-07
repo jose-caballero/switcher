@@ -1,0 +1,32 @@
+/var/log/switcher/switcher.log {
+  missingok
+  notifempty
+  sharedscripts
+  size 50M
+  rotate 10 
+  postrotate
+    sleep 5
+    [ -e /etc/profile ] && . /etc/profile >/dev/null 2>&1 || true
+#    [ -f /var/run/switcher.pid ] && /etc/init.d/switcher restart >/dev/null 2>&1 || true
+    if [ -f /var/run/switcher.pid ] ; then
+        systemctl stop switcher > /dev/null 2>&1
+        systemctl start switcher > /dev/null 2>&1
+    fi
+  endscript
+}
+/var/log/switcher/console.log {
+  missingok
+  notifempty
+  sharedscripts
+  size 50M
+  rotate 2
+  postrotate
+    sleep 5
+    [ -e /etc/profile ] && . /etc/profile >/dev/null 2>&1 || true
+#    [ -f /var/run/switcher.pid ] && /etc/init.d/switcher restart >/dev/null 2>&1 || true
+    if [ -f /var/run/switcher.pid ] ; then
+        systemctl stop switcher > /dev/null 2>&1
+        systemctl start switcher > /dev/null 2>&1
+    fi
+  endscript
+}

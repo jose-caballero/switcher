@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# Starts the Switcher daemon
+#
+
+
+f_currentdir(){
+    # little function to find out where actually
+    # this script is located.
+    # In case of an user custom installation it could
+    # be in a place different that both /etc/init.d/ or the $HOME dir.
+    # The current location is recorded in variable CURRENTDIR
+    
+    OLD_DIR=$PWD
+    DIRPATH=`dirname $0`
+    cd $DIRPATH
+    CURRENTDIR=$PWD
+    cd $OLD_DIR
+}
+
+# Source function library.
+# Standard RedHat
+if [ -f /etc/rc.d/init.d/functions ]; then
+   . /etc/rc.d/init.d/functions
+fi
+
+# Source standard environment
+for i in /etc/profile.d/*.sh; do
+    if [ -r "$i" ]; then
+            . $i >/dev/null 2>&1
+    fi
+done
+
+# Determine usage context and set paths accordingly.  
+#   -- for root it means RPM
+#   -- for non-root, the head of the path tree can be calculated from the output of f_currentdir
+#      the relative paths for the rest of files are like ../bin, ../var, etc.
+
+f_currentdir
+
+if [ `id -u` = 0 ]; then
+    SWITCHERHEAD=/
+    SYSCONF=/etc/sysconfig/switcher
+    BINDIR=/usr/bin
+    ETCDIR=/etc/switcher
+    PIDFILE=/var/run/switcher.pid
+else
+    SWITCHERHEAD=`dirname $CURRENTDIR`
+    SYSCONF=$SWITCHERHEAD/etc/switcher
+    BINDIR=$SWITCHERHEAD/bin
+    ETCDIR=$SWITCHERHEAD/etc
+    PIDFILE=$SWITCHERHEAD/var/run/switcher.pid
+fi
+
+## Sensible defaults
+#CONFFILE=$ETCDIR/switcher.conf
+#LOGFILE=/var/log/switcher/switcher.log
+#CONSOLE_LOG=/var/log/switcher/console.log
+#OPTIONS="--debug --sleep=60 --runas=switcher --log=$LOGFILE"
+
+# Source settings from sysconfig
+# overriding default if present
+
+if [ -f $SYSCONF ]; then
+   . $SYSCONF
+fi
+
+if [ -f /etc/profile ]; then
+   . /etc/profile
+fi
+
+
+RETVAL=0
+
+# =============================================================================
+#                           S T A R T
+# =============================================================================
+
+create_var_run(){
+    # function to create directory  $SWITCHERHEAD/var/run 
+    # if it does not exist. 
+    # It is needed to place the file switcher.pid 
+    if [ ! -d $SWITCHERHEAD/var/run/ ]; then
+        mkdir -p $SWITCHERHEAD/var/run/
+    fi
+}
+
+create_var_log(){
+    # function to create directory  $SWITCHERHEAD/var/log/switcher 
+    # if it does not exist. 
+    if [ ! -d $SWITCHERHEAD/var/log/switcher ]; then
+        mkdir -p $SWITCHERHEAD/var/log/switcher/
+    fi
+}
+
+
+start() {
+	# Check if it is already running
+	PROGRETVAL=0
+	if [ ! -f $PIDFILE ]; then
+		echo -n $"Starting Switcher daemon: "	
+        create_var_run
+        create_var_log
+	    # daemon --pidfile=${PIDFILE} "$BINDIR/switcher --conf $CONFFILE $OPTIONS "
+        if [ -n "$CONSOLE_LOG" ]; then
+        	$BINDIR/switcher --conf $CONFFILE>> $CONSOLE_LOG 2>&1 &
+        else
+            $BINDIR/switcher --conf $CONFFILE &
+        fi
+        RETVAL=$?
+		PID=$!
+	    [ "$RETVAL" -eq 0 ] && echo $! > $PIDFILE        
+
+		sleep 3
+		if checkpid $PID; then
+			PROGRETVAL=0
+		else
+			wait $PID
+			PROGRETVAL=$?
+			rm -f $PIDFILE
+		fi
+        [ "$PROGRETVAL" -eq 0 ] && success $"switcher startup" || failure $"switcher startup"
+	    echo
+	else
+		if checkpid $PID; then
+			echo "$0: daemon with PID $PID already running." && success $"switcher startup"
+			PROGRETVAL=0
+		else
+			echo "$0: daemon dead but PID file exists: $PIDFILE" && failure $"switcher startup"
+	    	PROGRETVAL=1
+	    fi
+	fi
+
+	return $PROGRETVAL
+}
+
+
+# =============================================================================
+#                           S T O P
+# =============================================================================
+
+check() {
+	# Check if switcher.py is executable
+	test -x $BINDIR/switcher || exit 5
+}
+
+stop() {
+
+	check
+	echo -n $"Stopping Switcher daemon: "
+	killproc -p $PIDFILE switcher 
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f $PIDFILE && success $"switcher shutdown" || failure $"switcher shutdown"
+	echo
+    return $RETVAL
+}
+
+# =============================================================================
+
+case "$1" in
+start)
+	start
+	RETVAL=$?
+	;;
+stop)
+	stop
+    RETVAL=$?
+	;;
+esac
+
+exit $RETVAL
